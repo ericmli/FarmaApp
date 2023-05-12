@@ -18,7 +18,7 @@ const screenOptionStyle = {
 export default function Navigation () {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={screenOptionStyle} initialRouteName='SendHome'>
+      <Stack.Navigator screenOptions={screenOptionStyle} initialRouteName='Login'>
         <Stack.Screen
           name="Login"
           component={Login}

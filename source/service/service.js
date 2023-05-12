@@ -12,6 +12,7 @@ const AuthProvider = ({ children }) => {
     await AsyncStorage.setItem('name', token.user.name)
     await AsyncStorage.setItem('email', token.user.email)
     await AsyncStorage.setItem('id', token.user._id)
+    await AsyncStorage.setItem('admin', JSON.stringify(token.user.admin))
   }
 
   async function logout() {

@@ -3,6 +3,7 @@ import Icon from 'react-native-vector-icons/Feather'
 
 export const Container = styled.SafeAreaView`
   padding: 10px;
+  flex: 1;
 `
 export const ContainerFlat = styled.View`
   flex-direction: row;
@@ -47,9 +48,14 @@ export const ContainerFlatIcon = styled.View`
   align-items: center;
   justify-content: space-evenly;
   margin-bottom: 5px;
-  width: 100%;
+  width: 60%;
 `
-
+export const TextValue = styled.Text`
+  color: ${props => props.theme.color};
+  font-size: 16px;
+  width: 100px;
+  font-weight: 500;
+`
 export const Amount = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
@@ -68,3 +74,21 @@ export const Icone = styled(Icon)`
   font-size: 20px;
   margin-top: 2px;
   `
+
+export const ContainerBottom = styled.View`
+  background: #FFF;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 10px;
+  padding-bottom: 0;
+  width: 100%;
+`
+
+export const ContainerBottomText = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+`

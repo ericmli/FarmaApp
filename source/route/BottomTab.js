@@ -2,6 +2,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Icon from 'react-native-vector-icons/Feather'
 import { Home } from '../page/home'
 import { Bag } from '../page/bag'
+import { Profil } from '../page/profil'
 
 const Tab = createBottomTabNavigator()
 
@@ -29,12 +30,22 @@ export function BottomTabs() {
       />
 
       <Tab.Screen
-        name="Bag"
+        name="My Cart"
         component={Bag}
         options={{
           headerShown: false,
           tabBarIcon: ({ color }) => {
-            return <Icon name="shopping-bag" size={25} color={color} />
+            return <Icon name="shopping-cart" size={25} color={color} />
+          }
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={Profil}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color }) => {
+            return <Icon name="user" size={25} color={color} />
           }
         }}
       />

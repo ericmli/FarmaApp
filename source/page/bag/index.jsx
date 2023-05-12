@@ -1,19 +1,27 @@
 import React from 'react'
-import { FlatList, StatusBar } from 'react-native'
-import { Amount, Back, Container, ContainerFlat, ContainerFlatIcon, ContainerFlatText, Icone, Text, TextTypeProduct } from './styles'
+import { FlatList } from 'react-native'
+import { Amount, Back, Container, ContainerBottom, ContainerBottomText, ContainerFlat, ContainerFlatIcon, ContainerFlatText, Icone, Text, TextTypeProduct, TextValue } from './styles'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useFocusEffect } from '@react-navigation/native'
 import { API_HOST } from '../../service/host'
 import { AuthContext } from '../../service/service'
+import { Button } from '../../component/button'
+import { TextInput } from '../../component/input/styles'
 
 export function Bag({ navigation }) {
   const { cartSave } = React.useContext(AuthContext)
   const [data, setData] = React.useState([])
+  const [amount, setAmount] = React.useState(0)
+
   useFocusEffect(
     React.useCallback(() => {
       getStorage()
     }, [])
   )
+
+  React.useEffect(() => {
+    calcPrice()
+  }, [data])
 
   async function getStorage() {
     const response = await AsyncStorage.getItem('cart')
@@ -39,6 +47,16 @@ export function Bag({ navigation }) {
     cartSave([...newData])
   }
 
+  async function calcPrice() {
+    const value = await Promise.all(data.map(item => item.valor))
+    const multiply = await Promise.all(data.map(item => item.quantidade))
+
+    const total = value.reduce(function (total, i, index) {
+      return total + i * multiply[index]
+    }, 0)
+    setAmount(total.toFixed(1))
+  }
+
   const list = ({ item, index }) => {
     return (
       <ContainerFlat>
@@ -53,7 +71,7 @@ export function Bag({ navigation }) {
             <Amount onPress={() => switchItem(false, index)}><Icone name='minus' color='grey' /></Amount>
             <Amount onPress={() => deleteItem(item._id)}><Icone name='trash' color='black' /></Amount>
             <Container>
-              <Text>${item.valor}</Text>
+              <TextValue>${item.valor}</TextValue>
             </Container>
           </ContainerFlatIcon>
         </ContainerFlatText>
@@ -61,16 +79,24 @@ export function Bag({ navigation }) {
     )
   }
   return (
-    <Container>
-      <StatusBar backgroundColor='transparent' translucent={false} />
-      <FlatList
-        data={data}
-        decelerationRate='fast'
-        renderItem={list}
-        keyExtractor={(item) => item._id}
-        showsHorizontalScrollIndicator={false}
-      />
-
-    </Container>
+    <>
+      <Container>
+        <FlatList
+          data={data}
+          decelerationRate='fast'
+          renderItem={list}
+          keyExtractor={(item) => item._id}
+          showsHorizontalScrollIndicator={false}
+        />
+      </Container>
+      <ContainerBottom>
+        <TextInput placeholder='Add Cupom'/>
+        <ContainerBottomText>
+        <TextTypeProduct>Total amount: </TextTypeProduct>
+        <Text>${amount}</Text>
+        </ContainerBottomText>
+        <Button name='CHECK OUT' />
+      </ContainerBottom>
+    </>
   )
 }

@@ -33,7 +33,7 @@ export default function Login({ navigation }) {
     try {
       const response = await api.post('auth/login', obj)
       login(response.data.data)
-      navigation.navigate('Home')
+      navigation.navigate('SendHome')
     } catch {
       alert('passou nao mano')
     }
