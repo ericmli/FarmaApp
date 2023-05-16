@@ -5,6 +5,7 @@ import Login from '../page/login'
 import Register from '../page/register'
 import { BottomTabs } from './BottomTab'
 import { Product } from '../page/product'
+import { Admin } from '../page/admin'
 
 const Stack = createNativeStackNavigator()
 const screenOptionStyle = {
@@ -18,7 +19,7 @@ const screenOptionStyle = {
 export default function Navigation () {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={screenOptionStyle} initialRouteName='Login'>
+      <Stack.Navigator screenOptions={screenOptionStyle} initialRouteName='SendHome'>
         <Stack.Screen
           name="Login"
           component={Login}
@@ -40,6 +41,12 @@ export default function Navigation () {
         <Stack.Screen
           name="Product"
           component={Product}
+        />
+
+        <Stack.Screen
+          name="Admin"
+          component={Admin}
+          options={{ headerShown: false }}
         />
 
       </Stack.Navigator>

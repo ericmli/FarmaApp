@@ -3,10 +3,10 @@ import Icon from 'react-native-vector-icons/AntDesign'
 
 export const View = styled.View`
   position: relative;
+  width: 100%;
 `
 
 export const TextInput = styled.TextInput`
-  width: 100%;
   text-align: left;
   font-size: 14px;
   color: black;

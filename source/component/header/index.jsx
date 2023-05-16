@@ -8,7 +8,7 @@ export function Header({ text, onPress }) {
       <ContainerIcon onPress={onPress}>
         <Icone name='left' />
       </ContainerIcon>
-        <Text>{text}</Text>
+        {text && <Text>{text}</Text>}
     </Container>
   )
 }

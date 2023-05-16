@@ -4,6 +4,7 @@ import { Container, ContainerImage, ContainerImageText, Image, Text } from './st
 import { Button } from '../../component/button'
 import { FlatlistProducts } from '../../component/flatlistProducts'
 import api from '../../service'
+import { useFocusEffect } from '@react-navigation/native'
 
 function Head() {
   return (
@@ -21,11 +22,13 @@ function Head() {
 export function Home({ navigation }) {
   const [item, setItem] = React.useState([])
   const [itemBlackList, setitemBlackList] = React.useState([])
-  React.useEffect(() => {
-    getAPI()
-  }, [])
+  useFocusEffect(
+    React.useCallback(() => {
+      getAPI()
+    }, [])
+  )
   async function getAPI() {
-    const response = await api.get('/products/list')
+    const response = await api.get('products/list')
     const { add, remove } = response.data.products.reduce(
       (result, item) => {
         if (item.valor < 50) {

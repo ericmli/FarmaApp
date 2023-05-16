@@ -2,19 +2,23 @@ import styled from 'styled-components/native'
 import Icon from 'react-native-vector-icons/AntDesign'
 
 export const Container = styled.View`
-  height: 140px;
-  justify-content: space-between;
-  margin-bottom: 60px;
+width: 100%;
+padding: 5px;
 `
 
 export const ContainerIcon = styled.TouchableOpacity`
-  height: 80px;
+  height: 34px;
+  width: 34px;
+  border-width: 1px;
+  border-radius: 50px;
+  align-items: center;
   justify-content: center;
 `
 
 export const Icone = styled(Icon)`
   color: ${(props) => props.theme.color};
-  font-size: 24px;
+  font-size: 20px;
+
 `
 
 export const Text = styled.Text`

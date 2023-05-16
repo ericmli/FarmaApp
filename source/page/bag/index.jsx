@@ -6,7 +6,6 @@ import { useFocusEffect } from '@react-navigation/native'
 import { API_HOST } from '../../service/host'
 import { AuthContext } from '../../service/service'
 import { Button } from '../../component/button'
-import { TextInput } from '../../component/input/styles'
 
 export function Bag({ navigation }) {
   const { cartSave } = React.useContext(AuthContext)
@@ -90,7 +89,6 @@ export function Bag({ navigation }) {
         />
       </Container>
       <ContainerBottom>
-        <TextInput placeholder='Add Cupom'/>
         <ContainerBottomText>
         <TextTypeProduct>Total amount: </TextTypeProduct>
         <Text>${amount}</Text>
